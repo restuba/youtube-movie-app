@@ -9,34 +9,32 @@ import Error from './components/pages/Error';
 import { Switch, Route } from "react-router-dom";
 
 class App extends Component{
-  constructor(props){
-    super(props)
-    this.state = {
-      value: "john"
-    }
+  state = {
+    keyword: "John"
   }
 
-  handleSearchChange(newValue){
+  handleSearchChange(valueBaru){
     this.setState({
-      value: newValue
-  })
-  }
+      keyword: valueBaru
+  })}
 
   render(){
     return (
         <>
-          <Navbar onSearchChange={(valueBaru) => this.handleSearchChange(valueBaru)}/>  
-              <Sidebar />
-              <MainWrapper >
-                <Switch>
-                  <Route exact path="/" render={() => (
-                    <Home data={this.state.value} />
-                  )}/>
-                  <Route exact path="/trending" component={Trending} />
-                  <Route exact path="/subscription" component={Subscription} />
-                  <Route component={Error} />
-                </Switch>
-              </MainWrapper>
+          <Navbar onSearchChange={(valueBaru) => this.handleSearchChange(valueBaru)}/> 
+          <Sidebar /> 
+          <MainWrapper >
+            <Switch>
+              <Route exact path="/" render={() => (
+                <Home data={this.state.keyword} />
+              )}/>
+              <Route exact path="/trending" component={Trending} />
+              <Route exact path="/subscription" render={() => (
+                <Subscription data={this.state.keyword} />
+              )}/>
+              <Route component={Error} />
+            </Switch>
+          </MainWrapper>
         </>
     )
   }

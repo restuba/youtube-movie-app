@@ -31,16 +31,18 @@ const ThumbImage = styled.div`
     position: relative;
     overflow: hidden;
     border-radius: 8px;
-    img{
-        width: 100%;
-        display: block;
-        height: 100%;
-        -webkit-transform: scale(1);
-        transform: scale(1);
-        -webkit-transition: .3s ease-in-out;
-        transition: .3s ease-in-out;
-    }
+    
 
+`;
+
+const Image = styled.img`
+    width: 100%;
+    display: block;
+    height: 100%;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
 `;
 
 const ThumbTitle = styled.div`
@@ -60,15 +62,11 @@ const ThumbDesc = styled.p`
 
 
 class Thumbnail extends React.Component {
-    
-    handleClickYa(){
-        console.log("YA PENCET")
-    }
     render() {
         return (
-            <ThumbWrapper onClick={this.handleClickYa()} >
+            <ThumbWrapper >
                 <ThumbImage>
-                    <img src={this.props.thumb} alt="Thumbnail Image"/>
+                    <Image src={this.props.thumb} alt="Thumbnail Image"/>
                     <ThumbTime>{this.props.vote}</ThumbTime>
                 </ThumbImage>
                 <ThumbTitle>

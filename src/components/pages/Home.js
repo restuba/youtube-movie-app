@@ -3,37 +3,47 @@ import styled from 'styled-components';
 import  Thumbnail  from '../commons/Thumbnail.js';
 import Axios from 'axios';
 
+
 class Home extends React.Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            thumbnails : []
+    state = {
+        thumbnails : [],
+        data: this.props.data
+    }
+
+    UNSAFE_componentWillMount(){
+        this.perfomSeach();
+    }
+
+    shouldComponentUpdate(){
+        if(this.state.data !== this.props.data){
+            this.setState({
+                data: this.props.data
+            }, this.perfomSeach())
         }
+        console.log(this.state.data)
+        return true;
     }
 
-    componentWillMount() {
-        this.performSearch(this.props.data)  
+    UNSAFE_componentWillReceiveProps(){
+        this.perfomSeach();
     }
 
-    componentWillUpdate(){
-        this.performSearch(this.props.data)  
-    }
-    
-    performSearch(){
+
+    perfomSeach(){
         Axios.get("https://api.themoviedb.org/3/search/movie?&api_key=1b5adf76a72a13bad99b8fc0c68cb085&query=" + this.props.data)
         .then(res => {
             const thumbnails = res.data.results
             this.setState({thumbnails})
         }).catch(err => console.log(err))
     }
+
     render(){
-        const urlString = "https://image.tmdb.org/t/p/w600_and_h900_bestv2" 
+        const urlString = "https://image.tmdb.org/t/p/w600_and_h900_bestv2";
         return(
             <>   
                 <ThumbnailContent>
                     {
-                        this.state.thumbnails.map((row, index) => {
-                           
+                        this.state.thumbnails.map((row, index) => { 
                             return(
                                 <Thumbnail key={row.id}
                                     title={row.title}

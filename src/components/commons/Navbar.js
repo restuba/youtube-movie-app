@@ -8,6 +8,78 @@ import { RiMenuLine as Humburger } from "react-icons/ri";
 import { MdSearch as SearchIcon } from "react-icons/md";
 import Avatar from "../images/thumb-1.jpg";
 
+
+export class Navbar extends React.Component{
+    state = {
+        value: "ya" 
+    }
+
+    onSubmit = this.onSubmit.bind(this);
+    
+
+    handleSearchChange = (newValue) => {
+        this.props.onSearchChange(newValue);
+    }
+
+    onSubmit(event){
+        event.preventDefault();
+        var query = this.input.value;
+        this.setState({
+            value: query
+        }, () =>{
+            this.handleSearchChange(this.state.value);
+        })
+    }
+
+    render(){
+        return (
+            <Headers>
+            <HeaderContainer>
+                <LeftHeader>
+                    <Link to="/">
+                        <Humburger className="humberger-icon"/>
+                    </Link>
+                    <Link to="/" className="logo">
+                        <img src={LogoApp} alt="Youtube Logo" />
+                    </Link>
+                </LeftHeader>
+                <CenterHeader>
+                    <form onSubmit={this.onSubmit}>
+                        <input 
+                            type="text"
+                            placeholder="Enter search term"
+                            ref = {input => this.input = input}
+                            to = "/subscription"
+                            />
+                        <button><SearchIcon /></button>
+                    </form>
+                   
+                </CenterHeader>
+                <RightHeader>
+                    <Link to="/">
+                        <SearchIcon className="nav-icon" id="search-icon" />
+                    </Link>
+                    <Link to="/">
+                        <AiOutlineVideoCamera className="nav-icon" />
+                    </Link >
+                    <Link to="/">
+                        <Dash className="nav-icon" />
+                    </Link>
+                    <Link to="/">
+                        <BsBell className="nav-icon" />
+                    </Link>
+                    <Link to="/">
+                        <img src={Avatar} alt="avatar" className="nav-icon"/>
+                    </Link>   
+                </RightHeader>
+            </HeaderContainer>
+            </Headers>
+        );
+    }
+};
+
+export default Navbar;
+
 const Headers = styled.div`
     position: fixed;
     width: 100%;
@@ -120,72 +192,3 @@ const RightHeader = styled.div`
         }
     }
 `;
-
-export class Navbar extends React.Component{
-    state = {
-        value: "kosong" 
-    }
-
-    onSubmit = this.onSubmit.bind(this);
-    
-
-    handleSearchChange = (newValue) => {
-        this.props.onSearchChange(newValue);
-    }
-
-    onSubmit(event){
-        event.preventDefault();
-        var query = this.input.value;
-        this.setState({
-            value: query
-        }, () =>{
-            this.handleSearchChange(this.state.value);
-        })
-    }
-
-    render(){
-        return (
-            <Headers>
-            <HeaderContainer>
-                <LeftHeader>
-                    <Link to="/">
-                        <Humburger className="humberger-icon"/>
-                    </Link>
-                    <Link to="/" className="logo">
-                        <img src={LogoApp} alt="Youtube Logo" />
-                    </Link>
-                </LeftHeader>
-                <CenterHeader>
-                    <form onSubmit={this.onSubmit}>
-                        <input 
-                            type="text"
-                            placeholder="Enter search term"
-                            ref = {input => this.input = input}
-                            />
-                        <button ><SearchIcon /></button>
-                    </form>
-                </CenterHeader>
-                <RightHeader>
-                    <Link to="/">
-                        <SearchIcon className="nav-icon" id="search-icon" />
-                    </Link>
-                    <Link to="/">
-                        <AiOutlineVideoCamera className="nav-icon" />
-                    </Link >
-                    <Link to="/">
-                        <Dash className="nav-icon" />
-                    </Link>
-                    <Link to="/">
-                        <BsBell className="nav-icon" />
-                    </Link>
-                    <Link to="/">
-                        <img src={Avatar} alt="avatar" className="nav-icon"/>
-                    </Link>   
-                </RightHeader>
-            </HeaderContainer>
-            </Headers>
-        );
-    }
-};
-
-export default Navbar;
