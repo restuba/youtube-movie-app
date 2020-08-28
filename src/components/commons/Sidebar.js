@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import AvaChannel from "../images/thumb-1.jpg";
@@ -6,40 +6,40 @@ import { MdWhatshot as TrendingIcon, MdHome as HomeIcon, MdSubscriptions as SubI
     MdVideoLibrary as LibraryIcon, MdHistory as HistoryIcon, MdAccessTime as WatchIcon,
     MdOndemandVideo as FavIcon, MdFavoriteBorder as LoveIcon, MdSettings as SettingIcon}  from 'react-icons/md';
 
-export default class Sidebar extends Component{
-    render(){
-        return (
-            <SidebarWrapper>
-                <SidebarNav>
-                    <Link to="/"><HomeIcon className="nav-link"/>Home</Link>
-                    <Link to="/trending"><TrendingIcon  className="nav-link"/>Trending</Link>
-                    <Link to="/subscription"><SubIcon className="nav-link"/>Subscriptions</Link>
-                </SidebarNav>
-                <br />
-                <SidebarNav>
-                    <Link to="/"><LibraryIcon className="nav-link"/>Library</Link>
-                    <Link to="/"><HistoryIcon className="nav-link"/>History</Link>
-                    <Link to="/"><FavIcon className="nav-link"/>Your videos</Link>
-                    <Link to="/"><WatchIcon className="nav-link"/>Watch later</Link>
-                    <Link to="/"><LoveIcon className="nav-link"/>Liked Videos</Link>
-                </SidebarNav>
+export const Sidebar = (props) => {
+    return(
+        <SidebarWrapper>
+            <SidebarNav>
+                <Link to="/"><HomeIcon className="nav-link"/>Home</Link>
+                <Link to="/trending"><TrendingIcon  className="nav-link"/>Trending</Link>
+                <Link to="/subscription"><SubIcon className="nav-link"/>Subscriptions</Link>
+            </SidebarNav>
+            <br />
+            <SidebarNav>
+                <Link to="/"><LibraryIcon className="nav-link"/>Library</Link>
+                <Link to="/"><HistoryIcon className="nav-link"/>History</Link>
+                <Link to="/"><FavIcon className="nav-link"/>Your videos</Link>
+                <Link to="/"><WatchIcon className="nav-link"/>Watch later</Link>
+                <Link to="/"><LoveIcon className="nav-link"/>Liked Videos</Link>
+            </SidebarNav>
 
-                <br />
-                <SidebarNav className="sub-content">
-                    <TitleNav>Subscriptions</TitleNav>
-                    <Link to="/"><img src={AvaChannel} alt="AvaChannel"/><span>Gussie Singleton</span></Link>
-                    <Link to="/"><img src={AvaChannel} alt="AvaChannel"/><span>Gussie Singleton</span></Link>
-                    <Link to="/"><img src={AvaChannel} alt="AvaChannel"/><span>Gussie Singleton</span></Link>
-                    <Link to="/"><img src={AvaChannel} alt="AvaChannel"/><span>Gussie Singleton</span></Link>
-                </SidebarNav>
-                <br />
-                <SidebarNav>
-                <Link to="/"><SettingIcon className="nav-link"/>Setting</Link>
-                </SidebarNav>
-            </SidebarWrapper>
-        );
-    }
-};
+            <br />
+            <SidebarNav className="sub-content">
+                <TitleNav>Subscriptions</TitleNav>
+                <Link to="/"><img src={AvaChannel} alt="AvaChannel"/><span>Gussie Singleton</span></Link>
+                <Link to="/"><img src={AvaChannel} alt="AvaChannel"/><span>Gussie Singleton</span></Link>
+                <Link to="/"><img src={AvaChannel} alt="AvaChannel"/><span>Gussie Singleton</span></Link>
+                <Link to="/"><img src={AvaChannel} alt="AvaChannel"/><span>Gussie Singleton</span></Link>
+            </SidebarNav>
+            <br />
+            <SidebarNav>
+            <Link to="/"><SettingIcon className="nav-link"/>Setting</Link>
+            </SidebarNav>
+        </SidebarWrapper>
+    )
+}
+
+
 
 const SidebarWrapper = styled.div`
     float: left;

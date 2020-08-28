@@ -1,13 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Subscription extends Component {
-    render() {
-        return (
-            <div>
-                <h3>Hello from subscription</h3>
-            </div>
-        );
-    }
-}
+const Subscription = () => {
+    return <h1>Comming Soon ....</h1>
+};
 
 export default Subscription;

@@ -4,14 +4,13 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { AiOutlineVideoCamera } from "react-icons/ai";
 import { BsGrid3X3Gap as Dash, BsBell } from "react-icons/bs";
-import { RiMenuLine as Humburger } from "react-icons/ri";
 import { MdSearch as SearchIcon } from "react-icons/md";
 import Avatar from "../images/thumb-1.jpg";
 
 
 export class Navbar extends React.Component{
     state = {
-        value: "ya" 
+        value: "" 
     }
 
     onSubmit = this.onSubmit.bind(this);
@@ -36,9 +35,6 @@ export class Navbar extends React.Component{
             <Headers>
             <HeaderContainer>
                 <LeftHeader>
-                    <Link to="/">
-                        <Humburger className="humberger-icon"/>
-                    </Link>
                     <Link to="/" className="logo">
                         <img src={LogoApp} alt="Youtube Logo" />
                     </Link>
@@ -94,7 +90,7 @@ const HeaderContainer = styled.div`
     padding: 8px 0;
     position: relative;
     @media only screen and (max-width: 600px){
-        grid-template-columns: 50% 1fr auto; 
+        grid-template-columns: 30% 1fr auto; 
         grid-template-rows: 1fr 0px 40%;
     }
 `;
@@ -142,12 +138,8 @@ const CenterHeader = styled.div`
         color: #b3b3b3
     }
     @media only screen and (max-width: 720px){
-        input, button{
-            display: none;
-        }
-    }
-    @media only screen and (max-width: 600px){
-        display: none;
+        margin: auto 0;
+        width: 100%;
     }
 `;
 
@@ -177,6 +169,7 @@ const RightHeader = styled.div`
     @media only screen and (max-width: 600px){
         padding: 0px;
         margin: auto 0;
+        display:none;
         a{
             float: left;
             font-size: 12px;

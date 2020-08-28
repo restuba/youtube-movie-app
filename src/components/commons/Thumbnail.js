@@ -62,11 +62,14 @@ const ThumbDesc = styled.p`
 
 
 class Thumbnail extends React.Component {
+    addDefaultSrc = (ev) => {
+        ev.target.src = 'https://raw.githubusercontent.com/restuba/youtube-movie-app/master/src/components/images/notfound.jpg'
+    }
     render() {
         return (
             <ThumbWrapper >
                 <ThumbImage>
-                    <Image src={this.props.thumb} alt="Thumbnail Image"/>
+                    <Image src={this.props.thumb} onError={this.addDefaultSrc} alt="Thumbnail Image"/>
                     <ThumbTime>{this.props.vote}</ThumbTime>
                 </ThumbImage>
                 <ThumbTitle>

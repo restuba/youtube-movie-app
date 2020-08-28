@@ -1,43 +1,36 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import Navbar from './components/commons/Navbar';
-import Sidebar from './components/commons/Sidebar';
-import Home from './components/pages/Home';
-import Trending from './components/pages/Trending';
+import { Sidebar } from './components/commons/Sidebar';
+import { Home } from './components/pages/Home';
+import { Trending } from './components/pages/Trending';
 import Subscription from './components/pages/Subscription';
 import Error from './components/pages/Error';
 import { Switch, Route } from "react-router-dom";
 
-class App extends Component{
-  state = {
-    keyword: "John"
+export const App = () => {
+  const [keyword, setKeyword] = useState('john');
+
+  const handleSearchChange = (valueBaru) => {
+    setKeyword(valueBaru)
   }
 
-  handleSearchChange(valueBaru){
-    this.setState({
-      keyword: valueBaru
-  })}
-
-  render(){
-    return (
+  return(
         <>
-          <Navbar onSearchChange={(valueBaru) => this.handleSearchChange(valueBaru)}/> 
-          <Sidebar /> 
+          <Navbar onSearchChange={(valueBaru) => handleSearchChange(valueBaru)}/> 
+          <Sidebar/> 
           <MainWrapper >
             <Switch>
               <Route exact path="/" render={() => (
-                <Home data={this.state.keyword} />
+                <Home data={keyword} />
               )}/>
               <Route exact path="/trending" component={Trending} />
-              <Route exact path="/subscription" render={() => (
-                <Subscription data={this.state.keyword} />
-              )}/>
+              <Route exact path="/subscription" component={Subscription} />
               <Route component={Error} />
             </Switch>
           </MainWrapper>
         </>
-    )
-  }
+  )
 }
 
 const MainWrapper = styled.div`
@@ -57,4 +50,3 @@ const MainWrapper = styled.div`
   }
 `;
 
-export default App;
